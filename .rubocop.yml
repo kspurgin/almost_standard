@@ -1,2 +1,35 @@
-  inherit_from:
-    - https://raw.githubusercontent.com/kspurgin/code-quality/main/configurations/rubocop-standard.yml
+# We want Exclude directives from different
+# config files to get merged, not overwritten
+inherit_mode:
+  merge:
+    - Exclude
+
+require:
+  # Standard's config uses custom cops,
+  # so it must be loaded
+  - standard
+  - standard-custom
+  - standard-performance
+  - rubocop-performance
+
+inherit_gem:
+  standard: config/base.yml
+  standard-custom: config/base.yml
+  standard-performance: config/base.yml
+
+# Per project, you can enable cops (which are disabled in Standard by default)
+#   here
+Layout/LineContinuationSpacing:
+  Enabled: true
+  EnforcedStyle: no_space
+Layout/LineLength:
+  Enabled: true
+  Max: 80
+Style/FrozenStringLiteralComment:
+  Enabled: true
+# Global options, like Ruby version
+AllCops:
+  SuggestExtensions: false
+  # Stuck needing to support 2.7 until CSV Importer is updated, and I've been
+  #   forbidden from attempting that work
+  TargetRubyVersion: 2.7
