@@ -1,3 +1,95 @@
-# AlmostStandard
+= AlmostStandard
 
 Shareable code style/linting config
+
+== What's not Standard?
+Runs Standard with the following overrides/customizations:
+
+=== https://docs.rubocop.org/rubocop/cops_style.html#stylefrozenstringliteralcomment[`Style/FrozenStringLiteralComment`] enabled, with enforced style `always`
+
+This means that all files should have the magic comment
+
+`# frozen_string_literal: true`
+
+or
+
+`# frozen_string_literal: false`
+
+This cop was added in Ruby 2.3, when it was on the roadmap to make all string literals frozen by default in Ruby 3. This plan https://bugs.ruby-lang.org/issues/11473#note-53[was abandoned], leading some to https://github.com/rubocop/rubocop/issues/7197[question the continued relevance of enabling this cop by default.]
+
+The cop is still enabled by default in Rubocop.
+
+https://github.com/standardrb/standard/pull/181[The reasons it was disabled in Standard] seem to mainly be:
+
+* "matz said default frozen string literals were never going to happen."
+* not liking two extra lines at the top of every file
+
+I'm overriding this because:
+
+1. That's not what matz said. Matz said it wasn't going to happen in Ruby 3.
+
+__________________________________________________
+I officially abandon making frozen-string-literals default (for Ruby3). --https://bugs.ruby-lang.org/issues/11473#note-53[matz]
+__________________________________________________
+
+https://github.com/rubocop/rubocop/issues/7197#issuecomment-508931360[It is reported] that Matz would like to implement default frozen string literals in the future.
+
+I would like my code to be ready if/when this happens. If it never happens #2 is still salient.
+
+2. In https://github.com/standardrb/standard/pull/181[the discussion of this cop for Standard], a number of experienceD and trusted Ruby community members attest to the performance benefits of freezing string literals by default.
+
+A number of Ruby libraries such as CSV and Psych (yaml) default to frozen string literals already.
+
+In the kind of data-processing code I tend to write, mutable strings can be a real bug liability.
+
+=== https://docs.rubocop.org/rubocop/cops_layout.html#layoutlinecontinuationspacing[Layout/LineContinuationSpacing] enforced style `no_space`
+
+This cop is enabled by Standard with the default enforced style `space`.
+
+Given that line continuation is used to break long lines, it seems space-wasteful to require an extra space be inserted between end-of-string segment and `\` (line continuation backslash)
+
+That extra space could cause a string that otherwise fit on the line to need to be broken into multiple lines.
+
+=== https://docs.rubocop.org/rubocop/cops_layout.html#layoutlineendstringconcatenationindentation[Layout/LineEndStringConcatenationIndentation] enabled with enforced style `indented`
+
+Disabled in Standard.
+
+I'm overriding this because Standard seems to rather consistently prefer indentation of continued code elements/ideas. Leaving this disabled seems inconsistent.
+
+=== https://docs.rubocop.org/rubocop/cops_layout.html#layoutlinelength[Layout/LineLength] enabled with max=80
+
+The other configurable values of this cop are left at default.
+
+This seems to be ignored by Standard because it is "a personal preference" and/or "editors wrap lines automatically".
+
+I am overriding this because:
+
+* We have accessibility standards, and personal preferences should not override accessibility. Code is almost always read on screen, and https://www.w3.org/WAI/WCAG21/Understanding/visual-presentation.html[WCAG guidelines specify a maximum line width of 80 characters].
+* Editor text wrapping often produces bizarre-looking Ruby that is visually difficult to follow.
+* Laptop screens are not getting bigger, and if you need to regularly code in one window while referring to something else in another window, 80 character lines just work.
+
+==== Implementation notes
+
+[TIP]
+====
+`rubocop -a` fill fix many line length offenses, however it is conservative in which lines it tries to correct.
+
+If you are left with many long line offenses, run the following to mark them as "rubocop:todo" in your code. They will no longer show up as offenses, and you can deal with them as you work in the code base over time.
+
+`rubocop --disable-uncorrectable --only Layout/LineLength`
+====
+
+Rubocop recommends a number of other cops be enabled if you wish to use autocorrection for `Layout/LineLength`. The cops below are in that list of recommendations, but are disabled by Standard (1.31.0).
+
+These are enabled by default by Rubocop, and enabled here (with their default settings) as per that recommendation:
+
+* `Style/BlockDelimiters`
+* `Layout/FirstParameterIndentation`
+
+
+These are disabled by default by Rubocop and left disabled here:
+
+* `Layout/MultilineArrayLineBreaks`
+* `Layout/MultilineHashKeyLineBreaks`
+* `Layout/MultilineMethodArgumentLineBreaks`
+* `Layout/MultilineMethodParameterLineBreaks`
