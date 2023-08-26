@@ -13,8 +13,7 @@ Gem::Specification.new do |spec|
                      "across other projects"
   spec.homepage = "https://github.com/kspurgin/almost_standard"
   spec.license = "MIT"
-  spec.required_ruby_version =
-    `ruby File.read(".ruby-version").strip`
+  spec.required_ruby_version = ">= 3.1.0"
 
   spec.metadata["allowed_push_host"] =
     "TODO: Set to your gem server 'https://example.com'"
