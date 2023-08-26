@@ -1,0 +1,3 @@
+# AlmostStandard
+
+Shareable code style/linting config
