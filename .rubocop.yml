@@ -27,6 +27,14 @@ Layout/LineLength:
   Max: 80
 Style/FrozenStringLiteralComment:
   Enabled: true
+
+# Disabled in Standard, but recommended by Rubocop to be enabled for autocorrect
+#   when Layout/LineLength is enabled and used with autocorrect
+Style/BlockDelimiters:
+  Enabled: true
+Layout/FirstParameterIndentation:
+  Enabled: true
+
 # Global options, like Ruby version
 AllCops:
   SuggestExtensions: false
