@@ -1,5 +1,13 @@
 = [Unreleased]
 
+== [0.1.2] - 2023-08-26
+
+- Enable Rubocop-recommended cops for autocorrecting `Layout/LineLength`
+
+== [0.1.1] - 2023-08-25
+
+- Let Rubocop/Standard https://docs.rubocop.org/rubocop/configuration.html#setting-the-target-ruby-version[deduce Ruby version from project files/variables]
+
 == [0.1.0] - 2023-08-25
 
 - Initial release
