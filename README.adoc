@@ -1,6 +1,55 @@
+:toc:
+:toc-placement!:
+:toclevels: 4
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+
 = AlmostStandard
 
 Shareable code style/linting config
+
+toc::[]
+
+== Use in your project
+
+=== 1. Add dependency
+
+Add `almost_standard` to your Gemfile in https://bundler.io/guides/groups.html[a development (or other non-default) group]. Example:
+
+[source:ruby]
+----
+group :development do
+  gem "pry", "~> 0.14"
+  gem "rake", "~> 13.0"
+  gem "almost_standard", github: "kspurgin/almost_standard", branch: "main"
+end
+----
+
+OR:
+
+[source:ruby]
+----
+gem "almost_standard", github: "kspurgin/almost_standard", branch: "main", group: :development
+----
+
+=== 2. Inherit rubocop config
+
+Create a `.rubocop.yml` file in the base directory of your project. The contents of the file should simply be:
+
+[source:yaml]
+----
+  inherit_gem:
+    almost_standard: .rubocop.yml
+----
+
+Theoretically you can add further overrides in your projects's `.rubocop` file, but that takes us even further away from the spirit of things.
 
 == What's not Standard?
 Runs Standard with the following overrides/customizations:
