@@ -1,5 +1,7 @@
 = [Unreleased]
 
+- Update this gem's `.ruby-version` to 3.2.1
+
 == [0.1.3] - 2023-08-26
 
 - Remove required ruby version statement from gemspec, as this is not a code gem, but a config gem
