@@ -38,6 +38,6 @@ Layout/FirstParameterIndentation:
 # Global options, like Ruby version
 AllCops:
   SuggestExtensions: false
-  # Stuck needing to support 2.7 until CSV Importer is updated, and I've been
+  # Stuck needing to support 3.0 until CSV Importer is updated, and I've been
   #   forbidden from attempting that work
-  TargetRubyVersion: 2.7
+  TargetRubyVersion: 3.0
