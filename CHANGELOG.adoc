@@ -1,5 +1,8 @@
 = [Unreleased]
 
+== [1.0.0] - 2024-08-24
+
+- Set TargetRubyVersion to 3.0
 - Update this gem's `.ruby-version` to 3.2.1
 
 == [0.1.3] - 2023-08-26
