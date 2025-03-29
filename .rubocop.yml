@@ -8,6 +8,8 @@ require:
   # Standard's config uses custom cops,
   # so it must be loaded
   - standard
+
+plugins:
   - standard-custom
   - standard-performance
   - rubocop-performance
