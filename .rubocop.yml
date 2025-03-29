@@ -43,3 +43,4 @@ AllCops:
   # Stuck needing to support 3.0 until CSV Importer is updated, and I've been
   #   forbidden from attempting that work
   TargetRubyVersion: 3.0
+  DisabledByDefault: true
