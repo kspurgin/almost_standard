@@ -1,5 +1,15 @@
 = [Unreleased]
 
+== [1.0.2] - 2025-07-16
+
+- Update dependencies
+
+== [1.0.1] - 2025-03-28
+
+- Update this gem's `.ruby-version` to 3.4.1
+- Move standardrb require statements to plugin section
+- Set AllCops DisabledByDefault: true
+
 == [1.0.0] - 2024-08-24
 
 - Set TargetRubyVersion to 3.0
