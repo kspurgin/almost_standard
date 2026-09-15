@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    almost_standard (1.0.2)
+    almost_standard (1.0.3)
       bundler
       rubocop
       rubocop-rspec
